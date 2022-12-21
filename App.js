@@ -39,10 +39,14 @@ export default function App() {
   ];
 
   const [ elements, setElements ] = useState(MUSICLIST);
-  const [ selected, setSelectElement] = useState(0);
+  const [ selected, setSelectElement] = useState('');
 
-  const handlePress = (id) => {
-    setSelectElement(id);
+  const handleSelect = (id) => {
+    elements.map( element => {
+      if (element.id === id) {
+        setSelectElement(id);
+      }
+    })
   };
 
   return (
@@ -55,7 +59,7 @@ export default function App() {
             <FlatList
               data={ elements }
               keyExtractor={ (item) => item.id }
-              renderItem={ ({ item }) => <MusicListElement info={item} handlePress={handlePress} selectedId={selected}/>} 
+              renderItem={ ({ item }) => <MusicListElement info={item} onHandleSelect={handleSelect} selectedId={selected} /> } 
               style={ styles.flatListStyles }
             />
       }

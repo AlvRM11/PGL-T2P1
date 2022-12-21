@@ -1,11 +1,12 @@
 import { Pressable, StyleSheet, View, Text } from 'react-native';
 
-const MusicListElement = ({info, handlePress, selectedId}) => {
+const MusicListElement = ({ info, onHandleSelect, selectedId }) => {
     
-  const {id, name, producer, isPlaying} = info;
+  const {id, name, producer} = info;
 
   const isSelected = () => {
-    if (selectedId != id) {
+    
+    if (selectedId !== id) {
         return false
     }
 
@@ -13,11 +14,11 @@ const MusicListElement = ({info, handlePress, selectedId}) => {
   }
 
   return (
-    <View style={isSelected ? styles.container : styles.containerSelect}>
-        <Pressable onPress={() => handlePress(id)}>
+    <Pressable onPress={() => onHandleSelect(id)}>
+        <View style={isSelected ? styles.containerSelect : styles.container}>
             <Text>{name} | {producer}</Text>
-        </Pressable>
-    </View>
+        </View>
+    </Pressable>
   )
 }
 
@@ -41,11 +42,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 10,
         padding: 15,
-        color: 'orange',
-        backgroundColor: '#cc660'
-    },
-    test: {
-        color: 'gray'
+        backgroundColor: '#cc6600'
     }
 });
 
